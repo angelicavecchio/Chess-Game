@@ -23,8 +23,8 @@ public class Piece {
     }
 
 
-    public boolean isKing(Piece p){
-        if(p.type != PieceType.KING){
+    public boolean isKing(){
+        if(this.type != PieceType.KING){
         return false;
     }
         return true;
@@ -32,8 +32,8 @@ public class Piece {
 
 
 
-    public void setKing(Piece p){
-        p.type = PieceType.KING;
+    public void setKing(){
+        this.type = PieceType.KING;
     }
 
 
