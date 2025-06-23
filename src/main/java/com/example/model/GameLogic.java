@@ -12,8 +12,8 @@ public class GameLogic {
 
     public GameLogic(){
         this.board = new Board();
-        this.player1 = new Player();
-        this.player2 = new Player();
+        this.player1 = new Player("Giocatore1", PieceColor.WHITE);
+        this.player2 = new Player("Giocatore2", PieceColor.BLACK);
         this.current_player = player1;
         this.state = GAME_STATE.IN_PROGRESS;
     }
@@ -40,15 +40,8 @@ public class GameLogic {
             return false;
         }
 
-        if (Math.abs(fromRow - toRow) != 1) {
-        return false;
-           }
-
-           if (Math.abs(fromCol - toCol) != 1) {
-           return false;
-         }
-        
-        if(!piece.isKing()){
+        if (Math.abs(fromRow - toRow) == 1) { 
+            if(!piece.isKing()){
             if(piece.getColor()== PieceColor.WHITE && toRow>=fromRow){
                 return false; //white can only go up 
             }
@@ -56,10 +49,33 @@ public class GameLogic {
             if(piece.getColor()== PieceColor.BLACK && toRow<=fromRow){
                 return false; //black must go down 
             }
+           }
+           return true;
         }
-            
+
+           if (Math.abs(fromRow - toRow) == 2) {
+           if(board.isEmpty((fromRow+toRow)/2, (fromCol+toCol)/2)){
+                return false;
+            }
+
+            if(board.getPiece((fromRow+toRow)/2, (fromCol+toCol)/2).getColor()==current_player.getColor()){
+                return false;
+            }
+            if(piece.getColor()== PieceColor.WHITE && toRow>=fromRow){
+                return false; //white can only go up 
+            }
+
+            if(piece.getColor()== PieceColor.BLACK && toRow<=fromRow){
+                return false; //black must go down 
+            }
+            return true;  
+         
+        }
+
         
-        return true;    
+        
+        return false;
+          
     }
 
 
