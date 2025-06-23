@@ -1,0 +1,39 @@
+# Java compiled files
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA
+.idea/
+*.iml
+out/
+
+# Eclipse
+*.log
+*.tmp
+*.bak
+*.swp
+*~.nib
+.localhistory
+.settings/
+.project
+.classpath
+
+# VS Code
+.vscode/
+
+# MacOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# JavaFX specific (optional if using build tools)
+fxbuild/
+
+# Build tools (if you use Maven or Gradle)
+target/
+build/
