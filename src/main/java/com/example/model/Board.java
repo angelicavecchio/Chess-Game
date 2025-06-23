@@ -74,4 +74,14 @@ public boolean isValid(int row,int col){
      
 }
 
+
+public int getSize(){
+    return this.dimension;
+}
+
+
+public void removePiece(int row,int col){
+    board[row][col] = null;
+}
+
 }
