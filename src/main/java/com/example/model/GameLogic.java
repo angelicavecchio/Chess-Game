@@ -91,8 +91,16 @@ public class GameLogic {
        public void makeMove(int fromRow, int fromCol, int toRow, int toCol){
         if(isValidMove(fromRow, fromCol, toRow, toCol)){
             Piece piece = board.getPiece(fromRow, fromCol);
-            board.setPiece(toRow, toCol, piece);
+            board.setPiece(toRow, toCol, piece); 
             board.removePiece(fromRow,fromCol);
+            if(Math.abs(fromRow - toRow) == 2) {
+   
+            board.removePiece((fromRow+toRow)/2, (fromCol+toCol)/2);
+            current_player.pieces--;
+   
+           }
+     
+            
 
           
                 if(piece.getColor()== PieceColor.WHITE && toRow==0){
@@ -106,7 +114,67 @@ public class GameLogic {
             }
             
         }
-       }
+
+        public boolean isGameOver() {
+    
+            if(player1.getNumberPieces()==0  || player2.getNumberPieces()==0){
+                return true;
+            }
+
+            if(!playerHasMoves(player1)){
+               state = GAME_STATE.BLACK_WINS;
+                return true;
+            }
+            if(!playerHasMoves(player2)){
+            state = GAME_STATE.WHITE_WINS;
+                return true;
+            }
+            
+
+               return false;
+            }
+
+
+           public boolean playerHasMoves(Player player) {
+           for (int row = 0; row < board.getSize(); row++) {
+           for (int col = 0; col < board.getSize(); col++) {
+            Piece piece = board.getPiece(row, col);
+            if (piece != null && piece.getColor() == player.getColor()) {
+                int[] directions = {-1, 1}; 
+
+                for (int dRow : directions) {
+                    for (int dCol : directions) {
+                        int newRow1 = row + dRow;
+                        int newCol1 = col + dCol;
+                        int newRow2 = row + 2 * dRow;
+                        int newCol2 = col + 2 * dCol;
+
+                        if (board.isValid(newRow1, newCol1) &&
+                            isValidMove(row, col, newRow1, newCol1)) {
+                            return true;
+                        }
+
+                        if (board.isValid(newRow2, newCol2) &&
+                            isValidMove(row, col, newRow2, newCol2)) {
+                            return true; 
+                        }
+                    }
+                }
+            }
+        }
+    }
+    return false; 
+}
+
+}
+
+
+
+
+
+
+
+       
 
 
 
