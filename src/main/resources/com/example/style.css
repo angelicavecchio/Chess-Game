@@ -1,0 +1,28 @@
+.dark-cell {
+    -fx-background-color: #769656;
+}
+
+.light-cell {
+    -fx-background-color: #eeeed2;
+}
+
+.white-piece {
+    -fx-background-color: white;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-border-color: black;
+}
+
+.black-piece {
+    -fx-background-color: black;
+    -fx-border-radius: 50%;
+    -fx-background-radius: 50%;
+    -fx-border-color: white;
+}
+
+
+.grid-pane{
+    -fx-border-color: black;
+
+
+}
